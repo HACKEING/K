@@ -51,6 +51,10 @@ int close(int fd);
 
 off_t lseek(int fd,off_t offset,int whence);
 
+/* To get the current offset: */
+off_t currpos=lseek(fd,0,SEEK_CUR);
+/* This can also be used to determine if a file is capable of seeking.If fd refers to a pipe/FIFO/socket,lseek() set errno to ESPIPE and returns -1. */
+
 /* Return:new file offset if ok,-1 on error */
 ```
 - **The interpretation of the _offset_ depends on the value of the _whence_ argument:**
