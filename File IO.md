@@ -61,3 +61,6 @@ off_t currpos=lseek(fd,0,SEEK_CUR);
 	1. **SEEK_SET** - The file's offset is set to offset bytes from the beginning of the file;
 	2. **SEEK_CUR** - The file's offset is set to its current value plus the offset.The offset can be positive or negative;
 	3. **SEEK_END** - The file's offset is set to the size of the file plus the offset.The offset can be positive or negative;
+- **Because negative offsets are possible,we should be careful to compare the return value from lseek() as being equal to or not equal to -1,rather than testing whether it is less than 0;**
+- **lseek() only records the current file offset within the kernel-it does not cause any I/O to take place.This offset is then used by the next read or write operation.**
+- **The file's offset can be greater than the file's current size,in which case the next write to the file will extend the file.**
